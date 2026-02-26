@@ -1,11 +1,13 @@
 services:
   db:
     image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
     environment:
       MYSQL_ROOT_PASSWORD: password
+      MYSQL_ROOT_HOST: "%"
       MYSQL_DATABASE: study_recall_v2_development
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - mysql-data:/var/lib/mysql
 

@@ -104,7 +104,7 @@ jobs:
           DATABASE_URL: mysql2://root:password@127.0.0.1:3306/study_recall_v2_test
           # RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
           # REDIS_URL: redis://localhost:6379/0
-        run: bin/rails db:test:prepare test
+        run: bin/rails db:prepare test
 
   system-test:
     runs-on: ubuntu-latest
@@ -115,6 +115,7 @@ jobs:
         command: --default-authentication-plugin=mysql_native_password
         env:
           MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: study_recall_v2_test
           RAILS_ENV: test
         ports:
           - 3306:3306
@@ -144,7 +145,7 @@ jobs:
           DATABASE_URL: mysql2://root:password@127.0.0.1:3306/study_recall_v2_test
           # RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
           # REDIS_URL: redis://localhost:6379/0
-        run: bin/rails db:test:prepare test:system
+        run: bin/rails db:prepare test:system
 
       - name: Keep screenshots from failed system tests
         uses: actions/upload-artifact@v4

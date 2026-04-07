@@ -14,8 +14,10 @@ default: &default
   encoding: utf8mb4
   max_connections: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
-  password:
-  socket: /tmp/mysql.sock
+  password: password
+  host: 127.0.0.1
+  port: 3307
+  # socket: /tmp/mysql.sock
 
 development:
   <<: *default
